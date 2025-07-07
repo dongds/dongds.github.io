@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 소개 사이트</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden; /* 전체 페이지 스크롤바 숨기기 */
+            font-family: 'Pretendard', sans-serif; /* 가독성 좋은 폰트 */
+        }
+
+        /* 스크롤을 제어할 메인 컨테이너 */
+        .main-container {
+            height: 100%;
+            transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1); /* 부드러운 전환 효과 */
+        }
+
+        /* 각 섹션의 공통 스타일 */
+        .section {
+            width: 100%;
+            height: 100vh; /* 화면 전체 높이 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden; /* 각 섹션의 내용이 넘치지 않도록 */
+            background-color: #F0F8FF; /* 연한 하늘색 배경 */
+        }
+
+        /* --- 섹션 1: 소개 페이지 --- */
+        #section1 .intro-box {
+            text-align: center;
+            color: #333;
+        }
+
+        #section1 .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 24px;
+            border-radius: 50%; /* 로고를 원형으로 표시 */
+            background-color: #B0E0E6; /* 로고 배경색 예시 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #section1 .intro-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* 스크롤 유도 아이콘 */
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down-indicator span {
+            display: block;
+            width: 24px;
+            height: 24px;
+            border-bottom: 2px solid #333;
+            border-right: 2px solid #333;
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+
+        /* --- 섹션 2, 3, 4: 이미지 흐름 --- */
+        .marquee-wrapper {
+            width: 100%;
+            display: flex;
+            position: absolute; /* 화면 전체에 걸쳐 흐르도록 */
+        }
+
+        .image-strip {
+            display: flex;
+            flex-shrink: 0; /* 이미지 스트립이 줄어들지 않도록 */
+            align-items: center;
+            justify-content: space-around;
+            min-width: 100%;
+        }
+
+        .image-strip img {
+            width: 300px; /* 이미지 너비 */
+            height: 400px; /* 이미지 높이 */
+            margin: 0 20px; /* 이미지 간격 */
+            border-radius: 16px; /* 둥근 모서리 */
+            object-fit: cover; /* 이미지가 잘리지 않고 채워지도록 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .image-strip img:hover {
+            transform: scale(1.05); /* 마우스 올리면 살짝 커지는 효과 */
+        }
+
+        /* 오른쪽으로 흐르는 애니메이션 */
+        @keyframes scroll-right {
+            from {
+                transform: translateX(0%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* 왼쪽으로 흐르는 애니메이션 */
+        @keyframes scroll-left {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        /* 애니메이션 적용 */
+        #section2 .marquee-wrapper {
+            animation: scroll-left 40s linear infinite;
+        }
+
+        #section3 .marquee-wrapper {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        #section4 .marquee-wrapper {
+            animation: scroll-left 40s linear infinite;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- 섹션 1: 소개 -->
+        <section class="section" id="section1">
+            <div class="intro-box">
+                <!-- 로고 이미지나 텍스트를 이곳에 넣으세요 -->
+                <div class="logo">
+                    LOGO
+                </div>
+                <p class="intro-text">
+                    우리의 제품을 소개합니다.<br>
+                    당신에게 특별한 경험을 선사할 것입니다.
+                </p>
+            </div>
+            <div class="scroll-down-indicator">
+                <span></span>
+            </div>
+        </section>
+
+        <!-- 섹션 2: 오른쪽으로 흐르는 이미지 -->
+        <section class="section" id="section2">
+            <div class="marquee-wrapper">
+                <div class="image-strip">
+                    <!-- 6개의 이미지를 넣으세요 (2번 반복하여 끊김 없는 효과) -->
+                    <img src="https://placehold.co/300x400/87CEEB/FFFFFF?text=Product+1" alt="제품 이미지 1">
+                    <img src="https://placehold.co/300x400/87CEFA/FFFFFF?text=Product+2" alt="제품 이미지 2">
+                    <img src="https://placehold.co/300x400/ADD8E6/FFFFFF?text=Product+3" alt="제품 이미지 3">
+                    <img src="https://placehold.co/300x400/B0E0E6/FFFFFF?text=Product+4" alt="제품 이미지 4">
+                    <img src="https://placehold.co/300x400/AFEEEE/FFFFFF?text=Product+5" alt="제품 이미지 5">
+                    <img src="https://placehold.co/300x400/B0C4DE/FFFFFF?text=Product+6" alt="제품 이미지 6">
+                </div>
+                <div class="image-strip">
+                    <img src="https://placehold.co/300x400/87CEEB/FFFFFF?text=Product+1" alt="제품 이미지 1">
+                    <img src="https://placehold.co/300x400/87CEFA/FFFFFF?text=Product+2" alt="제품 이미지 2">
+                    <img src="https://placehold.co/300x400/ADD8E6/FFFFFF?text=Product+3" alt="제품 이미지 3">
+                    <img src="https://placehold.co/300x400/B0E0E6/FFFFFF?text=Product+4" alt="제품 이미지 4">
+                    <img src="https://placehold.co/300x400/AFEEEE/FFFFFF?text=Product+5" alt="제품 이미지 5">
+                    <img src="https://placehold.co/300x400/B0C4DE/FFFFFF?text=Product+6" alt="제품 이미지 6">
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 3: 왼쪽으로 흐르는 이미지 -->
+        <section class="section" id="section3">
+            <div class="marquee-wrapper">
+                <div class="image-strip">
+                    <!-- 다른 6개의 이미지를 넣으세요 -->
+                    <img src="https://placehold.co/300x400/FFB6C1/FFFFFF?text=Feature+A" alt="제품 특징 A">
+                    <img src="https://placehold.co/300x400/FFC0CB/FFFFFF?text=Feature+B" alt="제품 특징 B">
+                    <img src="https://placehold.co/300x400/FFDAB9/FFFFFF?text=Feature+C" alt="제품 특징 C">
+                    <img src="https://placehold.co/300x400/FFE4E1/FFFFFF?text=Feature+D" alt="제품 특징 D">
+                    <img src="https://placehold.co/300x400/FFF0F5/FFFFFF?text=Feature+E" alt="제품 특징 E">
+                    <img src="https://placehold.co/300x400/F0E68C/FFFFFF?text=Feature+F" alt="제품 특징 F">
+                </div>
+                <div class="image-strip">
+                    <img src="https://placehold.co/300x400/FFB6C1/FFFFFF?text=Feature+A" alt="제품 특징 A">
+                    <img src="https://placehold.co/300x400/FFC0CB/FFFFFF?text=Feature+B" alt="제품 특징 B">
+                    <img src="https://placehold.co/300x400/FFDAB9/FFFFFF?text=Feature+C" alt="제품 특징 C">
+                    <img src="https://placehold.co/300x400/FFE4E1/FFFFFF?text=Feature+D" alt="제품 특징 D">
+                    <img src="https://placehold.co/300x400/FFF0F5/FFFFFF?text=Feature+E" alt="제품 특징 E">
+                    <img src="https://placehold.co/300x400/F0E68C/FFFFFF?text=Feature+F" alt="제품 특징 F">
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 4: 다시 오른쪽으로 흐르는 이미지 -->
+        <section class="section" id="section4">
+            <div class="marquee-wrapper">
+                <div class="image-strip">
+                    <!-- 또 다른 6개의 이미지를 넣으세요 -->
+                    <img src="https://placehold.co/300x400/98FB98/FFFFFF?text=Benefit+1" alt="제품 장점 1">
+                    <img src="https://placehold.co/300x400/90EE90/FFFFFF?text=Benefit+2" alt="제품 장점 2">
+                    <img src="https://placehold.co/300x400/8FBC8F/FFFFFF?text=Benefit+3" alt="제품 장점 3">
+                    <img src="https://placehold.co/300x400/9ACD32/FFFFFF?text=Benefit+4" alt="제품 장점 4">
+                    <img src="https://placehold.co/300x400/ADFF2F/FFFFFF?text=Benefit+5" alt="제품 장점 5">
+                    <img src="https://placehold.co/300x400/7CFC00/FFFFFF?text=Benefit+6" alt="제품 장점 6">
+                </div>
+                <div class="image-strip">
+                    <img src="https://placehold.co/300x400/98FB98/FFFFFF?text=Benefit+1" alt="제품 장점 1">
+                    <img src="https://placehold.co/300x400/90EE90/FFFFFF?text=Benefit+2" alt="제품 장점 2">
+                    <img src="https://placehold.co/300x400/8FBC8F/FFFFFF?text=Benefit+3" alt="제품 장점 3">
+                    <img src="https://placehold.co/300x400/9ACD32/FFFFFF?text=Benefit+4" alt="제품 장점 4">
+                    <img src="https://placehold.co/300x400/ADFF2F/FFFFFF?text=Benefit+5" alt="제품 장점 5">
+                    <img src="https://placehold.co/300x400/7CFC00/FFFFFF?text=Benefit+6" alt="제품 장점 6">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.querySelector('.main-container');
+            const sections = document.querySelectorAll('.section');
+            const sectionCount = sections.length;
+
+            let currentSectionIndex = 0;
+            let isScrolling = false; // 스크롤 중복 방지 플래그
+
+            // 마우스 휠 이벤트 처리
+            window.addEventListener('wheel', (event) => {
+                if (isScrolling) return; // 스크롤 중이면 아무것도 안함
+
+                isScrolling = true;
+
+                // 마우스 휠 방향 감지
+                if (event.deltaY > 0) {
+                    // 아래로 스크롤
+                    if (currentSectionIndex < sectionCount - 1) {
+                        currentSectionIndex++;
+                    }
+                } else {
+                    // 위로 스크롤
+                    if (currentSectionIndex > 0) {
+                        currentSectionIndex--;
+                    }
+                }
+                
+                // 해당 섹션으로 이동
+                scrollToSection(currentSectionIndex);
+
+                // 일정 시간 후 스크롤 가능하도록 플래그 해제
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1200); // CSS transition 시간보다 약간 길게 설정
+            });
+            
+            // 터치 이벤트 처리 (모바일 대응)
+            let touchStartY = 0;
+            window.addEventListener('touchstart', (event) => {
+                 touchStartY = event.touches[0].clientY;
+            });
+
+            window.addEventListener('touchend', (event) => {
+                if (isScrolling) return;
+                
+                const touchEndY = event.changedTouches[0].clientY;
+                const deltaY = touchStartY - touchEndY;
+
+                isScrolling = true;
+
+                if (deltaY > 50) { // 아래로 스와이프
+                     if (currentSectionIndex < sectionCount - 1) {
+                        currentSectionIndex++;
+                    }
+                } else if (deltaY < -50) { // 위로 스와이프
+                     if (currentSectionIndex > 0) {
+                        currentSectionIndex--;
+                    }
+                }
+
+                scrollToSection(currentSectionIndex);
+
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 1200);
+            });
+
+
+            // 섹션 이동 함수
+            function scrollToSection(index) {
+                container.style.transform = `translateY(-${index * 100}vh)`;
+            }
+        });
+    </script>
+</body>
+</html>
